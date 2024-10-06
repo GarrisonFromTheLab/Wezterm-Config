@@ -24,7 +24,7 @@ return {
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.96,
+         opacity = 0.3,
       },
    },
 
@@ -33,8 +33,8 @@ return {
 
    -- tab bar
    enable_tab_bar = true,
-   hide_tab_bar_if_only_one_tab = false,
-   use_fancy_tab_bar = false,
+   hide_tab_bar_if_only_one_tab = true,
+   use_fancy_tab_bar = true,
    tab_max_width = 25,
    show_tab_index_in_tab_bar = false,
    switch_to_last_active_tab_when_closing_tab = true,
@@ -47,6 +47,7 @@ return {
       bottom = 7.5,
    },
    window_close_confirmation = 'NeverPrompt',
+   window_background_opacity = 0.3,
    window_frame = {
       active_titlebar_bg = '#090909',
       -- font = fonts.font,

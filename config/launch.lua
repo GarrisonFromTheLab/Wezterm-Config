@@ -13,8 +13,8 @@ if platform.is_win then
       { label = 'Command Prompt', args = { 'cmd' } },
       { label = 'Nushell', args = { 'nu' } },
       {
-         label = 'Git Bash',
-         args = { 'C:\\Users\\garrison\\scoop\\apps\\git\\current\\bin\\bash.exe' },
+         label = 'PowerShell',
+         args = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' },
       },
    }
 elseif platform.is_mac then
