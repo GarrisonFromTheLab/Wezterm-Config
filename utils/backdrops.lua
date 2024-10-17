@@ -1,5 +1,5 @@
 local wezterm = require('wezterm')
-local platform = require('utils.platform')()
+local platform = require('utils.platform')
 local colors = require('colors.custom')
 
 -- Seeding random numbers before generating for use
@@ -11,6 +11,7 @@ math.random()
 math.random()
 
 local PATH_SEP = platform.is_win and '\\' or '/'
+local GLOB_PATTERN = '*.{jpg,jpeg,png,gif,bmp,ico,tiff,pnm,dds,tga}'
 
 ---@class BackDrops
 ---@field current_idx number index of current image
@@ -39,11 +40,12 @@ end
 ---
 --- INFO:
 ---   During the initial load of the config, this function can only invoked in `wezterm.lua`.
----   WezTerm's fs utility `read_dir` (used in this function) works by running on a spawned child process.
+---   WezTerm's fs utility `glob` (used in this function) works by running on a spawned child process.
 ---   This throws a coroutine error if the function is invoked in outside of `wezterm.lua` in the -
 ---   initial load of the Terminal config.
 function BackDrops:set_files()
-   self.files = wezterm.read_dir(wezterm.config_dir .. PATH_SEP .. 'backdrops')
+   self.files =
+      wezterm.glob(wezterm.config_dir .. PATH_SEP .. 'backdrops' .. PATH_SEP .. GLOB_PATTERN)
    wezterm.GLOBAL.background = self.files[1]
    return self
 end
@@ -87,8 +89,10 @@ function BackDrops:_set_focus_opt(window)
       background = {
          {
             source = { Color = self.focus_color },
-            height = '100%',
-            width = '100%',
+            height = '120%',
+            width = '120%',
+            vertical_offset = '-10%',
+            horizontal_offset = '-10%',
             opacity = 1,
          },
       },
@@ -101,10 +105,9 @@ end
 function BackDrops:choices()
    local choices = {}
    for idx, file in ipairs(self.files) do
-      local name = file:match('([^' .. PATH_SEP .. ']+)$')
       table.insert(choices, {
          id = tostring(idx),
-         label = name,
+         label = file:match('([^/]+)$'),
       })
    end
    return choices
