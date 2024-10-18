@@ -17,6 +17,8 @@ return {
       {
          source = { File = wezterm.GLOBAL.background },
          horizontal_align = 'Center',
+         -- opacity for the photo background
+         opacity = 0.30,
       },
       {
          source = { Color = colors.background },
@@ -24,7 +26,8 @@ return {
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.3,
+         -- setting for the opacity of the solid color behind the picture background
+         opacity = 0.30,
       },
    },
 
@@ -47,7 +50,8 @@ return {
       bottom = 7.5,
    },
    window_close_confirmation = 'NeverPrompt',
-   window_background_opacity = 0.3,
+   -- opacity for the window itself
+   window_background_opacity = 0.0,
    window_frame = {
       active_titlebar_bg = '#090909',
       -- font = fonts.font,
